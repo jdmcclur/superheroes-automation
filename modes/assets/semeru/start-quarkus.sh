@@ -9,7 +9,7 @@ else
     echo "start checkpoint run"
     for i in {1..500}; do ./pidplus.sh; done
     mkdir cr
-    $JAVA_HOME/bin/java -XX:CRaCCheckpointTo=cr -Dopenj9.internal.criu.unprivilegedMode=true ${JAVA_OPTS} ${JAVA_OPTS_APPEND} -jar ${JAVA_APP_JAR} 1>out 2>err </dev/null &
+    $JAVA_HOME/bin/java -Xtune:virtualized -XX:CRaCCheckpointTo=cr -Dopenj9.internal.criu.unprivilegedMode=true ${JAVA_OPTS} ${JAVA_OPTS_APPEND} -jar ${JAVA_APP_JAR} 1>out 2>err </dev/null &
 
     sleep 10
 
